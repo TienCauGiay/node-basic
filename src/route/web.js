@@ -8,6 +8,8 @@ const initWebRouter = (app) => {
 
     router.get('/about', homeController.getAboutPage);
 
+    router.get('/detail/user/:userID', homeController.getDetailPage);
+
     return app.use('/', router)
 }
 
