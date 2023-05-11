@@ -23,9 +23,29 @@ let createNewUser = async (req, res) => {
     return res.redirect('/');
 }
 
+let deleteUser = async (req, res) => {
+    await pool.execute(`delete from users where id = ${req.body.userId}`);
+    return res.redirect('/');
+}
+
+let updateUser = async (req, res) => {
+    let [user] = await pool.execute('select * from `users` where `ID` = ?', [req.params.userID]);
+    return res.render('update.ejs', { user: user });
+}
+
+let updateInfoUser = async (req, res) => {
+    let { firstName, lastName, email, address, userId } = req.body;
+    await pool.execute('update users set firstName = ?, lastName = ?, email = ?, address = ? where ID = ?',
+        [firstName, lastName, email, address, userId]);
+    return res.redirect('/');
+}
+
 module.exports = {
     getHomePage,
     getAboutPage,
     getDetailPage,
-    createNewUser
+    createNewUser,
+    deleteUser,
+    updateUser,
+    updateInfoUser
 }

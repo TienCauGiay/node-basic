@@ -10,7 +10,13 @@ const initWebRouter = (app) => {
 
     router.get('/detail/user/:userID', homeController.getDetailPage);
 
+    router.get('/update/user/:userID', homeController.updateUser);
+
     router.post('/create-new-user', homeController.createNewUser);
+
+    router.post('/delete-user', homeController.deleteUser);
+
+    router.post('/update-user', homeController.updateInfoUser);
 
     return app.use('/', router)
 }

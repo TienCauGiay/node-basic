@@ -50,7 +50,10 @@
                         <td>
                             <a href="/detail/user/<%= dataUser[i].ID %>">Details</a>
                             <a href="/update/user/<%= dataUser[i].ID %>">Update</a>
-                            <a href="/delete/user/<%= dataUser[i].ID %>">Delete</a>
+                            <form action="/delete-user" method="post">
+                                <input type="text" hidden value="<%= dataUser[i].ID %>" name="userId">
+                                <button type="submit">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     <% } %>
